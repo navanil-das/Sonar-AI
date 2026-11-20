@@ -318,6 +318,9 @@ def render_hud_card(label: str, value: str, sub: str):
 
 
 # --- Sidebar ---
+
+api_key = get_api_key()
+
 with st.sidebar:
     st.markdown("### 🎛️ Sonar Control Panel")
     st.caption("Tune the unsupervised anomaly engine in real time.")
@@ -328,19 +331,10 @@ with st.sidebar:
         max_value=99.5,
         value=98.5,
         step=0.1,
-        help="Higher percentile isolates only the sharpest bright acoustic echoes.",
+        help="Higher percentile isolates only the strongest acoustic echoes.",
     )
     cmap_label = st.selectbox("Heatmap Colormap", list(COLORMAPS.keys()), index=0)
     overlay_alpha = st.slider("Heatmap Opacity", 0.15, 0.75, 0.40, 0.05)
-
-    st.divider()
-    st.markdown("### 🔑 AI Co-Pilot Status")
-    api_key = get_api_key()
-    if api_key:
-        st.success("Gemini API Ready (Secrets)", icon="✅")
-    else:
-        api_key = st.text_input("Gemini API Key", type="password", placeholder="AIza...")
-        st.caption("Store GEMINI_API_KEY in `.streamlit/secrets.toml` or Cloud Secrets.")
 
     st.divider()
     st.markdown("### 📐 Pipeline Specs")
