@@ -1,0 +1,6 @@
+streamlit>=1.60.0
+onnxruntime
+opencv-python-headless
+numpy
+pillow
+google-genai
